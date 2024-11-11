@@ -29,12 +29,20 @@ jobs:
     #     java-version: '17'
     #     distribution: 'temurin'
     #     cache: maven    
-
-    - name: 'Dependency Review'
-      ## id: review
+    - name: Dependency Review NEW
       uses: actions/dependency-review-action@v4
       with:
-       fail-on-severity: low
+        fail-on-severity: moderate
+
+          # Use comma-separated names to pass list arguments:
+        deny-licenses: LGPL-2.0, BSD-2-Clause
+
+        
+    - name: 'Dependency Review'
+      id: review
+      uses: actions/dependency-review-action@v4
+      with:
+       fail-on-severity: critical
        base-ref: master          ##${{ github.event.pull_request.base.ref }}  # Target branch
        head-ref: master         ##${{ github.event.pull_request.head.ref }}  # Source branch
        ##  deny-licenses: LGPL-2.0, BSD-2-Clause
