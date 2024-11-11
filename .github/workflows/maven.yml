@@ -33,6 +33,8 @@ jobs:
       uses: actions/dependency-review-action@v4
       with:
         fail-on-severity: moderate
+        base-ref: master          ##${{ github.event.pull_request.base.ref }}  # Target branch
+        head-ref: master         ##${{ github.event.pull_request.head.ref }}  # Source branch
 
           # Use comma-separated names to pass list arguments:
         deny-licenses: LGPL-2.0, BSD-2-Clause
